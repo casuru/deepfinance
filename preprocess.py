@@ -1,11 +1,12 @@
 import pandas as pd
+import numpy as np
 
-def make_dataset(symbol):
+def make_dataset(symbol, num_trailing = 5):
 
     f = 'https://serveup-casuru.c9users.io/static/data/s&p/{0}.csv'.format(symbol)
     stock = pd.read_csv(f)
     stock = stock.sort_values(by = 'timestamp', ascending = True)
-    stock = stock[["open", "high", "low", "close"]]
+    feature_frame = stock[["open", "high", "low", "close"]]
         
     inputs, targets = [], []
     for ii in range(5, len(feature_frame.iloc[:,:])):
